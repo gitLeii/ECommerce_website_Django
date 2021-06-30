@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>EcomPro</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+{#    footer#}
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<!--footer starts from here-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+
+    <script type="text/javascript">
+        var user = '{{ request.user }}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getToken('csrftoken');
+
+        function getCookie(name){
+        {#  split cookie string and get all name=value pairs in an array  #}
+            var cookieArr = document.cookie.split(';');
+        {#  loop through the array element  #}
+            for(var i = 0; i < cookieArr.length; i++){
+                var cookiePair = cookieArr[i].split("=");
+            {#  removing whitespace at the beginning of the cookie name and compare it with given string  #}
+                if (name == cookiePair[0].trim()){
+                {#  decode the cookie value and return  #}
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return  null;
+        }
+        var cart = JSON .parse(getCookie('cart'))
+        if(cart == undefined){
+            cart={}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">EcomProject</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'store' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Category</a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+	     	<a href="admin"class="btn btn-login">Login</a>
+
+	     	<a href="{% url 'cart' %}">
+	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
+	    	</a>
+	    	<p id="cart-total">{{ cartItems }}</p>
+
+	    </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <br>
+    {% block content %}
+
+    {% endblock content %}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src=" {% static 'js/cart.js' %} ">
+
+</script>
+</body>
+
+<footer class="footer">
+<div class="container bottom_border">
+<div class="row">
+<div class=" col-sm-4 col-md col-sm-4  col-12 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+<!--headin5_amrc-->
+<p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+<p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
+<p><i class="fa fa-phone"></i>  +91-9999878398  </p>
+<p><i class="fa fa fa-envelope"></i> info@example.com  </p>
+
+
+</div>
+
+
+<div class=" col-sm-4 col-md  col-6 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+<!--headin5_amrc-->
+<ul class="footer_ul_amrc">
+<li><a href="http://webenlance.com">Image Rectoucing</a></li>
+<li><a href="http://webenlance.com">Clipping Path</a></li>
+<li><a href="http://webenlance.com">Hollow Man Montage</a></li>
+<li><a href="http://webenlance.com">Ebay & Amazon</a></li>
+<li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+<li><a href="http://webenlance.com">Image Cropping</a></li>
+</ul>
+<!--footer_ul_amrc ends here-->
+</div>
+
+
+<div class=" col-sm-4 col-md  col-6 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+<!--headin5_amrc-->
+<ul class="footer_ul_amrc">
+<li><a href="http://webenlance.com">Remove Background</a></li>
+<li><a href="http://webenlance.com">Shadows & Mirror Reflection</a></li>
+<li><a href="http://webenlance.com">Logo Design</a></li>
+<li><a href="http://webenlance.com">Vectorization</a></li>
+<li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+<li><a href="http://webenlance.com">Image Cropping</a></li>
+</ul>
+<!--footer_ul_amrc ends here-->
+</div>
+
+
+<div class=" col-sm-4 col-md  col-12 col">
+<h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+<!--headin5_amrc ends here-->
+
+<ul class="footer_ul2_amrc">
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
+<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
+</ul>
+<!--footer_ul2_amrc ends here-->
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<ul class="foote_bottom_ul_amrc">
+<li><a href="http://webenlance.com">Home</a></li>
+<li><a href="http://webenlance.com">About</a></li>
+<li><a href="http://webenlance.com">Services</a></li>
+<li><a href="http://webenlance.com">Pricing</a></li>
+<li><a href="http://webenlance.com">Blog</a></li>
+<li><a href="http://webenlance.com">Contact</a></li>
+</ul>
+<!--foote_bottom_ul_amrc ends here-->
+<p class="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
+
+<ul class="social_footer_ul">
+<li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
+<li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
+<li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
+<li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
+</ul>
+<!--social_footer_ul ends here-->
+</div>
+
+</footer>
+
+</html>
