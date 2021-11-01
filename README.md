@@ -1,6 +1,8 @@
 # ECommerce_website_Django![11]
-(https://user-images.githubusercontent.com/54047879/139679697-6afddf11-dd15-4df9-857c-8636d83d9b8e.png)
 
-(https://user-images.githubusercontent.com/54047879/139679731-3f07f151-0b12-4369-8786-96fbef36a002.png)
 
-(https://user-images.githubusercontent.com/54047879/139679755-8ca3fb29-ef8f-411f-836f-c3c493e495a6.png)
+![1](https://user-images.githubusercontent.com/54047879/139680556-67b81caa-4518-4679-b45e-a401dc0a7d63.jpg)
+
+![12](https://user-images.githubusercontent.com/54047879/139680626-67b1a4a6-8171-4f4e-a289-c95ceee8e076.png)
+
+![13](https://user-images.githubusercontent.com/54047879/139680642-7f0ed77f-d092-47d3-9e51-3cfb6ad67535.png)
