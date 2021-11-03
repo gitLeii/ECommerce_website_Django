@@ -1,6 +1,5 @@
 # ECommerce_website_Django![11]
 
-
 ![1](https://user-images.githubusercontent.com/54047879/139681313-7268fcb0-9e14-4e26-9081-8474212c19d9.jpg)
 
 ![14](https://user-images.githubusercontent.com/54047879/139680827-1871fab5-a0fe-436b-835d-665f39393b44.jpg)
